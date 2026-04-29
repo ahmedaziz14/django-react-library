@@ -160,32 +160,197 @@ const HomeScreen = () => {
 };
 
 const styles = {
-    container: { minHeight: '100vh', backgroundColor: '#f5f6fa', fontFamily: "'Segoe UI', Tahoma, sans-serif" },
-    navbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px 40px', backgroundColor: '#2c3e50', color: 'white', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' },
-    logo: { margin: 0, fontSize: '1.5rem' },
-    logoutBtn: { backgroundColor: '#e74c3c', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' },
-    mainContent: { padding: '40px', maxWidth: '1200px', margin: '0 auto' },
-    pageTitle: { color: '#2c3e50', marginBottom: '20px', fontSize: '2rem' },
-    
-    // Nouveaux styles pour la recherche
-    searchBarContainer: { display: 'flex', gap: '15px', marginBottom: '30px', backgroundColor: 'white', padding: '15px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', flexWrap: 'wrap' },
-    searchInput: { flex: 2, padding: '12px', fontSize: '1rem', borderRadius: '8px', border: '1px solid #bdc3c7', outline: 'none', minWidth: '250px' },
-    filterSelect: { flex: 1, padding: '12px', fontSize: '1rem', borderRadius: '8px', border: '1px solid #bdc3c7', outline: 'none', backgroundColor: '#f9f9f9', minWidth: '200px', cursor: 'pointer' },
-    noResultsBox: { textAlign: 'center', padding: '40px', backgroundColor: 'white', borderRadius: '10px' },
-    resetBtn: { marginTop: '15px', padding: '10px 20px', backgroundColor: '#95a5a6', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' },
-    
-    message: { fontSize: '1.2rem', color: '#7f8c8d' },
-    error: { color: '#e74c3c', fontWeight: 'bold', fontSize: '1.2rem' },
-    grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '30px' },
-    card: { backgroundColor: 'white', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', transition: 'transform 0.2s', display: 'flex', flexDirection: 'column' },
-    image: { width: '100%', height: '300px', objectFit: 'cover' },
-    placeholderImage: { width: '100%', height: '300px', backgroundColor: '#bdc3c7', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', fontWeight: 'bold' },
-    cardBody: { padding: '15px', display: 'flex', flexDirection: 'column', flexGrow: 1 },
-    bookTitle: { margin: '0 0 10px 0', color: '#2c3e50', fontSize: '1.2rem' },
-    badgesWrapper: { marginBottom: '10px' },
-    catBadge: { backgroundColor: '#e8f4f8', color: '#3498db', padding: '4px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold' },
-    bookAuthor: { margin: '0 0 15px 0', color: '#7f8c8d', flexGrow: 1 },
-    detailsBtn: { backgroundColor: '#3498db', color: 'white', border: 'none', padding: '10px', borderRadius: '5px', cursor: 'pointer', width: '100%', fontWeight: 'bold' }
+container: {
+    minHeight: '100vh',
+    background: '#f1f5f9',
+    fontFamily: "'Inter', sans-serif"
+},
+
+navbar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '16px 40px',
+    background: 'linear-gradient(135deg,#0f172a,#1e293b)',
+    color: 'white',
+    boxShadow: '0 5px 20px rgba(0,0,0,0.15)'
+},
+
+logo: {
+    margin: 0,
+    fontSize: '1.4rem',
+    fontWeight: '700'
+},
+
+logoutBtn: {
+    background: '#ef4444',
+    color: 'white',
+    border: 'none',
+    padding: '9px 16px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: '600',
+    marginLeft: '8px',
+    transition: '0.2s'
+},
+
+mainContent: {
+    padding: '40px',
+    maxWidth: '1300px',
+    margin: '0 auto'
+},
+
+pageTitle: {
+    color: '#0f172a',
+    marginBottom: '25px',
+    fontSize: '1.8rem',
+    fontWeight: '700'
+},
+
+searchBarContainer: {
+    display: 'flex',
+    gap: '15px',
+    marginBottom: '30px',
+    backgroundColor: 'white',
+    padding: '18px',
+    borderRadius: '14px',
+    boxShadow: '0 10px 25px rgba(0,0,0,0.05)',
+    flexWrap: 'wrap'
+},
+
+searchInput: {
+    flex: 2,
+    padding: '12px 14px',
+    fontSize: '0.95rem',
+    borderRadius: '10px',
+    border: '1px solid #e2e8f0',
+    outline: 'none',
+    minWidth: '250px',
+    background: '#f8fafc',
+    color: '#0f172a'
+},
+
+filterSelect: {
+    flex: 1,
+    padding: '12px',
+    fontSize: '0.95rem',
+    borderRadius: '10px',
+    border: '1px solid #e2e8f0',
+    outline: 'none',
+    backgroundColor: '#f8fafc',
+    minWidth: '200px',
+    cursor: 'pointer',
+    color: '#0f172a'
+},
+
+noResultsBox: {
+    textAlign: 'center',
+    padding: '40px',
+    backgroundColor: 'white',
+    borderRadius: '14px',
+    boxShadow: '0 5px 20px rgba(0,0,0,0.05)'
+},
+
+resetBtn: {
+    marginTop: '15px',
+    padding: '10px 20px',
+    background: '#64748b',
+    color: 'white',
+    border: 'none',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: '600'
+},
+
+message: {
+    fontSize: '1.1rem',
+    color: '#64748b'
+},
+
+error: {
+    color: '#ef4444',
+    fontWeight: '600',
+    fontSize: '1.1rem'
+},
+
+grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+    gap: '25px'
+},
+
+card: {
+    backgroundColor: 'white',
+    borderRadius: '14px',
+    overflow: 'hidden',
+    boxShadow: '0 10px 25px rgba(0,0,0,0.06)',
+    transition: '0.2s',
+    display: 'flex',
+    flexDirection: 'column'
+},
+
+image: {
+    width: '100%',
+    height: '260px',
+    objectFit: 'cover'
+},
+
+placeholderImage: {
+    width: '100%',
+    height: '260px',
+    backgroundColor: '#e2e8f0',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#64748b',
+    fontWeight: '600'
+},
+
+cardBody: {
+    padding: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1
+},
+
+bookTitle: {
+    margin: '0 0 8px 0',
+    color: '#0f172a',
+    fontSize: '1.1rem',
+    fontWeight: '600'
+},
+
+badgesWrapper: {
+    marginBottom: '10px'
+},
+
+catBadge: {
+    background: '#dbeafe',
+    color: '#2563eb',
+    padding: '4px 10px',
+    borderRadius: '20px',
+    fontSize: '0.75rem',
+    fontWeight: '600'
+},
+
+bookAuthor: {
+    margin: '0 0 15px 0',
+    color: '#64748b',
+    flexGrow: 1,
+    fontSize: '0.9rem'
+},
+
+detailsBtn: {
+    background: 'linear-gradient(135deg,#2563eb,#3b82f6)',
+    color: 'white',
+    border: 'none',
+    padding: '10px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    width: '100%',
+    fontWeight: '600',
+    transition: '0.2s'
+}
 };
 
 export default HomeScreen;

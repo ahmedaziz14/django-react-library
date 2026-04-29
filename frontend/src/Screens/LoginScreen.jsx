@@ -106,86 +106,110 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: 'var(--bg)',
+        background: 'linear-gradient(135deg, #0f172a, #1e293b)',
         padding: '20px'
     },
+
     card: {
         backgroundColor: '#ffffff',
-        padding: '30px 40px',
-        borderRadius: '15px',
-        boxShadow: 'var(--shadow)',
+        padding: '35px 40px',
+        borderRadius: '16px',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
         width: '100%',
-        maxWidth: '400px',
+        maxWidth: '420px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
     },
+
     logoContainer: {
-        width: '150px',
-        height: '150px',
+        width: '140px',
+        height: '140px',
         marginBottom: '10px'
     },
+
     title: {
-        color: 'var(--text-h)',
-        marginBottom: '8px',
-        textAlign: 'center'
+        color: '#0f172a',
+        marginBottom: '6px',
+        textAlign: 'center',
+        fontWeight: '700'
     },
+
     subtitle: {
-        color: 'var(--text)',
+        color: '#64748b',
         marginBottom: '25px',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: '0.95rem'
     },
+
+    errorText: {
+        width: '100%',
+        background: '#fee2e2',
+        color: '#dc2626',
+        padding: '10px',
+        borderRadius: '8px',
+        fontSize: '0.9rem',
+        marginBottom: '15px',
+        textAlign: 'center',
+        border: '1px solid #fecaca'
+    },
+
     form: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column'
     },
+
     inputGroup: {
-        marginBottom: '15px',
+        marginBottom: '16px',
         width: '100%'
     },
+
     label: {
         display: 'block',
-        marginBottom: '5px',
-        color: 'var(--text-h)',
-        fontWeight: 'bold',
+        marginBottom: '6px',
+        color: '#334155',
+        fontWeight: '600',
         fontSize: '0.9rem'
     },
+
     input: {
         width: '100%',
-        padding: '12px',
-        borderRadius: '8px',
-        border: '1px solid var(--border)',
+        padding: '12px 14px',
+        borderRadius: '10px',
+        border: '1px solid #e2e8f0',
         fontSize: '1rem',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        backgroundColor: '#f8fafc',
+        color: '#0f172a',   // FIX texte invisible
+        outline: 'none',
+        transition: '0.2s'
     },
+
     button: {
-        padding: '12px',
-        backgroundColor: 'var(--accent)',
+        padding: '13px',
+        background: 'linear-gradient(135deg,#2563eb,#3b82f6)',
         color: 'white',
         border: 'none',
-        borderRadius: '8px',
-        fontSize: '1.1rem',
+        borderRadius: '10px',
+        fontSize: '1.05rem',
         cursor: 'pointer',
-        fontWeight: 'bold',
-        marginTop: '15px',
-        transition: 'background 0.3s'
+        fontWeight: '600',
+        marginTop: '18px',
+        transition: '0.2s',
+        boxShadow: '0 10px 20px rgba(37,99,235,0.25)'
     },
-    errorText: {
-        color: '#e74c3c',
-        fontSize: '0.9rem',
-        marginBottom: '10px'
-    },
+
     footer: {
         marginTop: '20px',
         fontSize: '0.9rem',
-        color: 'var(--text)'
+        color: '#64748b'
     },
+
     link: {
-        color: 'var(--accent)',
-        fontWeight: 'bold',
+        color: '#2563eb',
+        fontWeight: '600',
         textDecoration: 'none'
     }
 };
-
 export default LoginScreen;

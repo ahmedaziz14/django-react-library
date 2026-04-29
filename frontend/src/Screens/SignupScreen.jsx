@@ -1,22 +1,20 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useLottie } from 'lottie-react';
-import api from '../../api/api'; // Axios configuration
-import logoAnimation from '../assets/animations/Login.json'; // Use the same logo animation
+import { toast } from 'react-toastify'; 
+
+// --- 1. CORRECTION : On importe axios normal au lieu de ton api configurée ---
+import axios from 'axios'; 
+import logoAnimation from '../assets/animations/Login.json'; 
 
 const SignupScreen = () => {
     const navigate = useNavigate();
     
-    // States for user input
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isAdmin, setIsAdmin] = useState(false); // --- NOUVEAU : L'état de la case Admin ---
-    
-    const [erreur, setErreur] = useState('');
-    const [succes, setSucces] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false); 
 
-    // Configure Lottie animation
     const options = {
         animationData: logoAnimation,
         loop: true,
@@ -25,20 +23,18 @@ const SignupScreen = () => {
     
     const handleSignup = async (e) => {
         e.preventDefault();
-        setErreur('');
-        setSucces('');
         
         if (username && email && password) {
             try {
-                // VRAI APPEL À DJANGO
-                await api.post('users/', {
+                // --- 2. CORRECTION : On utilise axios.post avec l'adresse complète ---
+                await axios.post('http://127.0.0.1:8000/api/users/', {
                     username: username,
                     email: email,
                     password: password,
-                    is_staff: isAdmin // --- NOUVEAU : On envoie le statut à Django ---
+                    is_staff: isAdmin 
                 });
                 
-                setSucces("Compte créé avec succès ! Redirection vers la connexion...");
+                toast.success("Compte créé avec succès ! 🚀");
                 
                 setTimeout(() => {
                     navigate('/login');
@@ -46,10 +42,10 @@ const SignupScreen = () => {
                 
             } catch (error) {
                 console.error("Erreur d'inscription:", error.response?.data);
-                setErreur("Erreur lors de l'inscription. Ce pseudo existe peut-être déjà.");
+                toast.error("Erreur : Ce nom d'utilisateur est peut-être déjà pris ❌");
             }
         } else {
-            setErreur("Veuillez remplir tous les champs.");
+            toast.warning("Veuillez remplir tous les champs. ⚠️");
         }
     };
 
@@ -57,16 +53,12 @@ const SignupScreen = () => {
         <div style={styles.container}>
             <div style={styles.card}>
                 
-                {/* Logo Animé (Shared) */}
                 <div style={styles.logoContainer}>
                     {View}
                 </div>
 
                 <h2 style={styles.title}>Créer un compte</h2>
                 <p style={styles.subtitle}>Rejoignez notre bibliothèque pour gérer vos livres.</p>
-
-                {erreur && <p style={styles.errorText}>{erreur}</p>}
-                {succes && <p style={styles.successText}>{succes}</p>}
 
                 <form onSubmit={handleSignup} style={styles.form}>
                     <div style={styles.inputGroup}>
@@ -102,7 +94,6 @@ const SignupScreen = () => {
                         />
                     </div>
 
-                    {/* --- NOUVEAU : LA CASE À COCHER ADMIN --- */}
                     <div style={styles.checkboxContainer}>
                         <input 
                             type="checkbox" 
@@ -121,7 +112,6 @@ const SignupScreen = () => {
                     </button>
                 </form>
 
-                {/* Footer (Link to Login) */}
                 <div style={styles.footer}>
                     <p>Déjà un compte ? <Link to="/login" style={styles.link}>Connectez-vous</Link></p>
                 </div>
@@ -131,121 +121,127 @@ const SignupScreen = () => {
     );
 };
 
-// --- Styles ---
 const styles = {
     container: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: 'var(--bg)',
+        background: 'linear-gradient(135deg, #0f172a, #1e293b)',
         padding: '20px'
     },
+
     card: {
         backgroundColor: '#ffffff',
-        padding: '30px 40px',
-        borderRadius: '15px',
-        boxShadow: 'var(--shadow)',
+        padding: '35px 40px',
+        borderRadius: '16px',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
         width: '100%',
-        maxWidth: '400px',
+        maxWidth: '420px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
     },
+
     logoContainer: {
-        width: '150px',
-        height: '150px',
+        width: '140px',
+        height: '140px',
         marginBottom: '10px'
     },
+
     title: {
-        color: 'var(--text-h)',
-        marginBottom: '8px',
-        textAlign: 'center'
+        color: '#0f172a',
+        marginBottom: '6px',
+        textAlign: 'center',
+        fontWeight: '700'
     },
+
     subtitle: {
-        color: 'var(--text)',
+        color: '#64748b',
         marginBottom: '25px',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: '0.95rem'
     },
+
     form: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column'
     },
+
     inputGroup: {
-        marginBottom: '15px',
+        marginBottom: '16px',
         width: '100%'
     },
+
     label: {
         display: 'block',
-        marginBottom: '5px',
-        color: 'var(--text-h)',
-        fontWeight: 'bold',
+        marginBottom: '6px',
+        color: '#334155',
+        fontWeight: '600',
         fontSize: '0.9rem'
     },
+
     input: {
         width: '100%',
-        padding: '12px',
-        borderRadius: '8px',
-        border: '1px solid var(--border)',
+        padding: '12px 14px',
+        borderRadius: '10px',
+        border: '1px solid #e2e8f0',
         fontSize: '1rem',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        backgroundColor: '#f8fafc',
+        color: '#0f172a',          // ✅ TEXTE VISIBLE
+        outline: 'none',
+        transition: '0.2s ease'
     },
-    
-    // --- Styles pour la case à cocher ---
+
     checkboxContainer: {
         display: 'flex',
         alignItems: 'center',
         gap: '10px',
-        backgroundColor: 'var(--bg)',
+        backgroundColor: '#f8fafc',
         padding: '12px',
-        borderRadius: '8px',
-        border: '1px dashed var(--border)',
-        marginBottom: '5px'
+        borderRadius: '10px',
+        border: '1px solid #e2e8f0',
+        marginTop: '5px'
     },
+
     checkbox: {
         width: '18px',
         height: '18px',
         cursor: 'pointer'
     },
+
     checkboxLabel: {
-        color: 'var(--accent)',
-        fontWeight: 'bold',
+        color: '#334155',
+        fontWeight: '500',
         cursor: 'pointer',
         fontSize: '0.9rem'
     },
 
     button: {
-        padding: '12px',
-        backgroundColor: 'var(--accent)',
+        padding: '13px',
+        background: 'linear-gradient(135deg,#2563eb,#3b82f6)',
         color: 'white',
         border: 'none',
-        borderRadius: '8px',
-        fontSize: '1.1rem',
+        borderRadius: '10px',
+        fontSize: '1.05rem',
         cursor: 'pointer',
-        fontWeight: 'bold',
-        marginTop: '15px',
-        transition: 'background 0.3s'
+        fontWeight: '600',
+        marginTop: '18px',
+        transition: '0.2s',
+        boxShadow: '0 10px 20px rgba(37,99,235,0.25)'
     },
-    errorText: {
-        color: '#e74c3c',
-        fontSize: '0.9rem',
-        marginBottom: '10px'
-    },
-    successText: {
-        color: '#27ae60',
-        fontSize: '0.9rem',
-        marginBottom: '10px',
-        fontWeight: 'bold'
-    },
+
     footer: {
         marginTop: '20px',
         fontSize: '0.9rem',
-        color: 'var(--text)'
+        color: '#64748b'
     },
+
     link: {
-        color: 'var(--accent)',
-        fontWeight: 'bold',
+        color: '#2563eb',
+        fontWeight: '600',
         textDecoration: 'none'
     }
 };
