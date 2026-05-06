@@ -10,9 +10,9 @@ class IsAdminOrReadOnly(permissions.BasePermission):
             return True
             
         # Si c'est une requête d'écriture (POST, PUT, DELETE), 
-        # il faut être connecté ET avoir le rôle 'ADMIN'
+        # il faut être connecté ET avoir le statut 'is_staff'
         return bool(
             request.user and 
             request.user.is_authenticated and 
-            request.user.role == 'ADMIN'
+            request.user.is_staff # --- LA CORRECTION EST ICI ---
         )

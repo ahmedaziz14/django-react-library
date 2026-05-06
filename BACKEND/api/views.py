@@ -53,7 +53,7 @@ class EmpruntViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        # CORRECTION : On utilise is_staff pour le filtrage
+        
         if user.is_staff:
             return Emprunt.objects.all()
         return Emprunt.objects.filter(utilisateur=user)

@@ -1,10 +1,10 @@
 from rest_framework import serializers
-# Modifie cette ligne :
+
 from .models import User, Categorie, Auteur, Livre, Emprunt
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    # On autorise React à envoyer ce champ (par défaut, c'est False)
+    
     is_staff = serializers.BooleanField(default=False) 
 
     class Meta:
@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             email=validated_data.get('email', ''),
             password=validated_data['password'],
-            # On applique le statut administrateur ici
+      
             is_staff=validated_data.get('is_staff', False) 
         )
         return user

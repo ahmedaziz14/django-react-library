@@ -9,7 +9,7 @@ import AddBookScreen from './Screens/AddBookScreen';
 import BookDetailScreen from './Screens/BookDetailScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import AdminDashboardScreen from './Screens/AdminDashboardScreen';
-
+import ManageAuteursScreen from './Screens/ManageAuteursScreen';
 const AppNavigator = () => {
     return (
         <Router>
@@ -43,8 +43,10 @@ const AppNavigator = () => {
                     } 
                 />
 
+
                 <Route path="/profile" element={<PrivateRoute><ProfileScreen /></PrivateRoute>} />
                 <Route path="/admin-dashboard" element={<PrivateRoute><AdminDashboardScreen /></PrivateRoute>} />
+                <Route path="/manage-auteurs" element={<ManageAuteursScreen />} />
             </Routes>
         </Router>
     );
